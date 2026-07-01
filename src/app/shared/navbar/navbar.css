@@ -1,0 +1,34 @@
+.btn-sair{
+    background-color: transparent;
+    color: var(--cor-texto-suave);
+    padding: 2px 2px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: var(--raio-pill);
+    transition: all var(--transicao);
+}
+
+.btn-sair:hover{
+  color: var(--cor-fundo);
+  transition: all var(--transicao);
+  background-color: var(--cor-acento);
+  padding: 2px 20px;
+
+}
+.btn-perigo{
+  background-color: transparent;
+  color: var(--cor-texto-suave);
+  padding: 2px 2px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: var(--raio-pill);
+  transition: all var(--transicao);
+}
+
+.btn-perigo:hover{
+  color:var(--cor-fundo);
+  padding: 2px 20px;
+  transition: all var(--transicao);
+  background-color: var(--cor-acento);
+}
+

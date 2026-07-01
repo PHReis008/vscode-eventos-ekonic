@@ -1,0 +1,18 @@
+<header class="cabecalho">
+    <a routerLink="/inicio" class="logo">E<span>konic</span></a>
+    <nav class="navbar">
+      <ul class="nav-lista">
+        <li><a routerLink="/inicio" routerLinkActive="ativo" class="nav-link ativo">Início</a></li>
+        <li><a routerLink="/vitrine" routerLinkActive="ativo" class="nav-link">Eventos</a></li>
+        <li><a routerLink="/contato" routerLinkActive="ativo" class="nav-link">Contato</a></li>
+      </ul>
+
+      @if (authService.isLoggedIn()) {
+       <a routerLink="/admin" class="btn-sair">Painel Admin</a>
+
+       <button type="button" (click)="authService.logout()" class="btn-perigo">Sair</button>
+      } @else {
+       <a routerLink="/login" class="btn-sair">Login</a>
+      }
+    </nav>
+  </header>

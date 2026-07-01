@@ -1,0 +1,95 @@
+<main class="login-page">
+  <form class="animar-subir" [formGroup]="eventosForm"  (ngSubmit)="onSubmit()">
+   <h1>{{id ? 'Editar Evento' : 'Novo Evento'}}</h1>
+    <div class="campo-grupo">
+        <label for="nome" class="campo-label">Nome do Evento</label>
+        <input type="text" id="nome" name="nome" class="campo-input" placeholder="Ex: Gala Corporativa 2026" formControlName="nome" required>
+    </div>
+
+    <div class="campo-grupo">
+        <label for="data" class="campo-label">Data do Evento</label>
+        <input type="date" id="data" name="data" class="campo-input" formControlName="data" required>
+    </div>
+
+    <div class="campo-grupo">
+        <label for="local" class="campo-label">Local</label>
+        <input type="text" id="local" name="local" class="campo-input" placeholder="Ex: Centro de Convenções" formControlName="local" required>
+    </div>
+
+    <div class="campo-grupo">
+        <label for="ingressos_restantes" class="campo-label">Ingressos Restantes</label>
+        <input type="number" id="ingressos_restantes" name="ingressos_restantes" class="campo-input" min="0"
+            placeholder="Ex: 250" formControlName="ingressos_restantes" required>
+    </div>
+
+    <div class="campo-grupo">
+        <label for="imagem" class="campo-label">Imagem do Evento</label>
+        <input type="file" id="imagem" name="imagem" class="campo-input" accept=".jpg,.png" required (change)="onFileSelected($event)">
+    </div>
+
+    <button type="submit" class="btn-evento-acao" style="align-self: flex-start; margin-top: 12px;">
+        Cadastrar Evento
+    </button>
+
+
+</form>
+
+  <aside class="preview">
+
+    <div class="preview-col">
+ 
+  <!-- 1) PREVIEW EM TEMPO REAL -->
+  <div class="preview-card">
+    <div class="preview-card-image" id="preview-imagem">
+      <i class="ti ti-photo" aria-hidden="true"></i>
+    </div>
+    <div class="preview-card-body">
+      <span class="status-badge s-disponivel" id="preview-status">disponível</span>
+      <p class="preview-card-title" id="preview-nome">Nome do evento</p>
+      <p class="preview-card-local">
+        <i class="ti ti-map-pin" style="font-size:14px;color:var(--cor-acento)" aria-hidden="true"></i>
+        <span id="preview-local">Local do evento</span>
+      </p>
+      <div class="preview-card-footer">
+        <span class="preview-card-data">
+          <i class="ti ti-calendar" style="font-size:14px;color:var(--cor-acento)" aria-hidden="true"></i>
+          <span id="preview-data">dd/mm/aaaa</span>
+        </span>
+        <span class="preview-card-ingressos" id="preview-ingressos">— ingressos</span>
+      </div>
+    </div>
+  </div>
+  <p class="preview-label">pré-visualização ao vivo</p>
+ 
+  <!-- 4) DICAS / CHECKLIST -->
+  <div class="tips-card">
+    <p class="tips-title">
+      <i class="ti ti-bulb" aria-hidden="true"></i>
+      Dicas para um cadastro melhor
+    </p>
+    <div class="tip-item" id="tip-nome">
+      <i class="ti ti-circle-dashed" aria-hidden="true"></i>
+      <span>Use um nome claro e específico — evite abreviações</span>
+    </div>
+    <div class="tip-item" id="tip-imagem">
+      <i class="ti ti-circle-dashed" aria-hidden="true"></i>
+      <span>Imagens 16:9, mínimo 1200px de largura, ficam melhores no card</span>
+    </div>
+    <div class="tip-item" id="tip-local">
+      <i class="ti ti-circle-dashed" aria-hidden="true"></i>
+      <span>Confirme o endereço completo do local antes de salvar</span>
+    </div>
+    <div class="tip-item" id="tip-ingressos">
+      <i class="ti ti-circle-dashed" aria-hidden="true"></i>
+      <span>Ingressos abaixo de 50 disparam o selo "esgotando" automaticamente</span>
+    </div>
+  </div>
+ 
+  <div class="preview-hint">
+    <i class="ti ti-info-circle" aria-hidden="true"></i>
+    <span>O preview reflete exatamente como o evento vai aparecer na listagem pública assim que for cadastrado.</span>
+  </div>
+ 
+</div>
+</aside>
+</main>

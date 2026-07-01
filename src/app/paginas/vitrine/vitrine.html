@@ -1,0 +1,62 @@
+  <main class="container">
+    
+    <!-- BANNER HERO DA SEÇÃO -->
+    <section class="eventos-banner animar-subir">
+      <span class="eventos-banner-tag"><i class="fas fa-sparkles"></i> Portal Oficial</span>
+      <h1 class="eventos-banner-titulo">Conectando pessoas,<br>criando memórias juntos</h1>
+      <p class="eventos-banner-sub">
+        Descubra e participe dos maiores shows dos seus cantores favoritos. Entreterimento de alto nível, 
+        experiências transformadores e conexões que criam momentos mágicos.
+      </p>
+      <div class="banner-numero-fundo">142</div>
+    </section>
+
+    <!-- DASHBOARD DE MÉTRICAS -->
+    <section class="dashboard">
+      <div class="dash-card animar-subir delay-1">
+        <i class="fas fa-calendar-alt dash-card-icon"></i>
+        <h2 class="dash-title">Total de Eventos</h2>
+        <p class="dash-number">142</p>
+      </div>
+      <div class="dash-card animar-subir delay-2">
+        <i class="fas fa-hourglass-half dash-card-icon"></i>
+        <h2 class="dash-title">Eventos Próximos</h2>
+        <p class="dash-number">08</p>
+      </div>
+      <div class="dash-card animar-subir delay-3">
+        <i class="fas fa-ticket-alt dash-card-icon"></i>
+        <h2 class="dash-title">Ingressos Disponíveis</h2>
+        <p class="dash-number">1.250</p>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- BARRA DE BUSCA E FILTROS RÁPIDOS -->
+    <div class="eventos-controles animar-fade">
+      <div class="busca-container">
+        <span class="busca-icone"><i class="fas fa-search"></i></span>
+        <input class="busca-input" type="text" placeholder="Buscar eventos..." />
+      </div>
+      <div class="filtros-lista">
+        <button class="filtro-btn ativo">Todos</button>
+        <button class="filtro-btn">Tecnologia</button>
+        <button class="filtro-btn">Liderança</button>
+        <button class="filtro-btn">Finanças</button>
+        <button class="filtro-btn">ESG</button>
+      </div>
+    </div>
+
+    <!-- LISTAGEM DE EVENTOS -->
+    <section class="eventos-section">
+      <h2 class="section-title">142 eventos cadastrados</h2>
+      
+      <div class="eventos-grid"> <!-- EVENTOS -->
+
+        @for (item of artigos(); track $index) {
+          <app-evento [data]="item"></app-evento>
+        }
+
+      </div>
+    </section>
+  </main>

@@ -1,0 +1,157 @@
+<div class="divisao-sites">
+    <aside class="login-visual">
+        <div class="eventos-grid">
+            <!-- Card 1 -->
+            <article class="evento-card">
+                <div class="evento-img">
+                    <div class="evento-img-bg bg1" aria-label="Imagem do evento Rock in Rio">🎸</div>
+                    <div class="evento-data-badge" aria-label="Data: 15 de setembro">
+                        <span class="dia">15</span>
+                        <span class="mes">SET</span>
+                    </div>
+                    <span class="evento-status disponivel" aria-label="Status: disponível">Disponível</span>
+                </div>
+                <div class="evento-body">
+                    <p class="evento-genero">Rock</p>
+                    <h3 class="evento-titulo">Rock in Rio 2025</h3>
+                    <p class="evento-artista">Palco Mundo · Cidade do Rock, RJ</p>
+                    <div class="evento-rodape">
+                        <span class="evento-local">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            Rio de Janeiro
+                        </span>
+                        <span class="evento-preco">
+                            <strong>R$ 490</strong>
+                            <small>/ ingresso</small>
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="evento-card">
+                <div class="evento-img">
+                    <div class="evento-img-bg bg2" aria-label="Imagem do evento Lollapalooza">🎵</div>
+                    <div class="evento-data-badge" aria-label="Data: 28 de março">
+                        <span class="dia">28</span>
+                        <span class="mes">MAR</span>
+                    </div>
+                    <span class="evento-status esgotando" aria-label="Status: esgotando">Esgotando</span>
+                </div>
+                <div class="evento-body">
+                    <p class="evento-genero">Pop / Alternativo</p>
+                    <h3 class="evento-titulo">Lollapalooza Brasil</h3>
+                    <p class="evento-artista">Autódromo de Interlagos · SP</p>
+                    <div class="evento-rodape">
+                        <span class="evento-local">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            São Paulo
+                        </span>
+                        <span class="evento-preco">
+                            <strong>R$ 695</strong>
+                            <small>/ dia</small>
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="evento-card">
+                <div class="evento-img">
+                    <div class="evento-img-bg bg3" aria-label="Imagem do evento São João">🪗</div>
+                    <div class="evento-data-badge" aria-label="Data: 24 de junho">
+                        <span class="dia">24</span>
+                        <span class="mes">JUN</span>
+                    </div>
+                    <span class="evento-status disponivel" aria-label="Status: disponível">Disponível</span>
+                </div>
+                <div class="evento-body">
+                    <p class="evento-genero">Samba / Forró</p>
+                    <h3 class="evento-titulo">Festival São João 2025</h3>
+                    <p class="evento-artista">Parque das Nações · Campina Grande, PB</p>
+                    <div class="evento-rodape">
+                        <span class="evento-local">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                            Campina Grande
+                        </span>
+                        <span class="evento-preco">
+                            <strong>R$ 120</strong>
+                            <small>/ noite</small>
+                        </span>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+        <div class="main-workspace">
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🛡️</div>
+                    <div>
+                        <h4>100% Seguro</h4>
+                        <p>Pagamento protegido</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <div>
+                        <h4>Entrega Instantânea</h4>
+                        <p>Ingresso digital</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+    <div class="right-panel">
+        <div class="form-container">
+            <h2>Novo Evento</h2>
+            <p class="form-instructions">Preencha os dados abaixo para qual evento quer criar.</p>
+
+            <form id="pedido-form" class="premium-form">
+
+                <div class="form-group">
+                    <label for="nome-comprador">Nome do Evento</label>
+                    <input type="text" id="nome-comprador" placeholder="Digite o nome do evento, conforme pedido" required
+                        autocomplete="off">
+                </div>
+
+                <div class="row">
+                    <div class="form-group">
+                        <label for="order-date">Data do Evento</label>
+                        <input type="date" id="order-date" value="15/09/2025">
+                    </div>
+                    <div class="form-group">
+                        <label for="order-time">Horário de Abertura</label>
+                        <input type="time" id="order-time" value="14:00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="order-location">Local do Evento</label>
+                    <input type="text" id="order-location" value="Cidade do Rock - Rio de Janeiro">
+                </div>
+
+                <div class="form-group">
+                    <label for="ticket-type">Qual vai ser o setor?</label>
+                    <input type="text" id="ticket-type" value="Pista Premium VIP">
+                </div>
+
+                    <div class="row">
+                    <div class="form-group">
+                        <label for="order-date">Data da Pré-venda</label>
+                        <input type="text" id="order-date" value="15/09/2025">
+                    </div>
+                    <div class="form-group">
+                        <label for="order-time">Horário da Abertura de Vendas</label>
+                        <input type="text" id="order-time" value="14:00">
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-submit">Criar Evento</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</div>

@@ -1,0 +1,22 @@
+<!-- EVENTO 3 (Finanças) -->
+<article class="evento-card animar-subir delay-6">
+    <div class="evento-thumbnail">
+        <img [src]="data().imagem_url">
+    </div>
+    <div class="evento-info">
+        <span class="badge badge-dourado">
+            <i class="fas fa-chart-line"></i> {{data().id}}</span>
+        <h3 class="evento-nome"> {{data().nome}}</h3> 
+        <div class="evento-detalhes">
+            <p><i class="far fa-calendar"></i> <span>Data:</span> {{data().data}}</p>
+            <p><i class="fas fa-map-marker-alt"></i> <span>Local:</span> {{data().local}}</p>
+        </div>
+    </div>
+    <div class="evento-status-acao">
+        <div class="evento-ingressos">
+            <p>Ingressos restantes</p>
+            <span class="destaque-dourado">{{data().ingressos_restantes}}</span>
+        </div>
+        <a href="#" class="btn-evento-acao">Garantir Vaga <i class="fas fa-arrow-right"></i></a>
+    </div>
+</article>

@@ -1,0 +1,101 @@
+  
+
+<main class="main" id="main-content">
+
+    <!-- VIEW: EVENTOS -->
+    <div id="view-eventos">
+        <div class="metrics-row" id="metrics-row"></div>
+        <div class="section-header">
+            <h2>Eventos cadastrados</h2>
+            <div class="header-actions">
+                <div class="search-bar">
+                    <i class="ti ti-search" aria-hidden="true" style="font-size:14px;color:var(--cor-cinza)"></i>
+                    <input type="text" placeholder="Buscar evento..." id="search-input" />
+                </div>
+                <a class="btn-add" routerLink="/admin/create">
+                    <i class="ti ti-plus" aria-hidden="true"></i> Novo evento
+                </a>
+            </div>
+        </div>
+        <div class="filter-row" id="filter-row"></div>
+
+        @if(isLoading()){
+        <div class="flex justify-center items-items-center gap-2 text-slate-600 p-6">
+            <svg class="animate-spin h-5 w-5 text-slate-500 " 
+            xmls="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"> 
+            <circle class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"></circle>
+            <path class="opacity-75"
+            fill="currentColor" 
+            d="M4 12a8 8 0 018-8v8z">
+            </path>
+            </svg>
+            Carregando Dados...
+        </div>
+        } @else {
+
+            @if(eventos().length == 0){
+                <div class="flex justify-center gap-3 mt-75 uppercase rounded-lg px-4 py-3 DM Sans">
+                    <p class="text-sm">Não existem eventos cadastrados...</p>
+                </div>
+            } @else {
+                  <div class="events-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Evento</th>
+                        <th>Data</th>
+                        <th>Ingressos</th>
+
+
+                        <th style="text-align:right">Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    @for(item of eventos(); track $index){
+                    <tr>
+                        <td>
+                            <span class="event-name">{{item.nome}}</span>
+                            <span class="event-venue">{{item.local}}</span>
+                        </td>
+
+                        <td>{{item.data}}</td>
+                        <td>
+                            <span class="tickets-text">{{item.ingressos_restantes}}</span>
+                        </td>
+
+                        <td>
+                            <div class="row-actions">
+                                <a class="act-btn" [routerLink]="['/admin/edit', item.id]" title="Editar">
+                                    ✏️
+                                </a>
+                                <button class="act-btn danger" (click)="deleteEventos(item.id)" title="Remover">
+                                    🗑️
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+
+                    
+
+                </tbody>
+            </table>
+        </div>
+            }
+      
+        }
+        
+    </div>
+
+</main>
+
+
+
+
