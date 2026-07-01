@@ -583,7 +583,6 @@ button {
   align-items: center;
   gap: 8px;
   border-top: 1px solid var(--cor-borda);
-  margin-top: var(--espaco-2xl);
 }
 
 .rodape-logo {

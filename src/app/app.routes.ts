@@ -14,6 +14,7 @@ export const routes: Routes = [
     {path: "login", component: Login},
     {path: "cadastro", component: Cadastro},
     {path: "contato", component: Contato},
+    {path:'', redirectTo: 'inicio', pathMatch: 'full'},
     {path: "admin", 
         canActivate:[guardGuard],
         children:[
@@ -22,5 +23,6 @@ export const routes: Routes = [
         {path: 'create', component: EventoForm},
         {path: 'edit/:id', component: EventoForm}
      ]}
+     
     
 ];
