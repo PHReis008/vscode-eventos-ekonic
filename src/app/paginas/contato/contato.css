@@ -46,7 +46,7 @@
  .container {
  max-width: 1200px;
  margin: 0 auto;
- padding: 0 var(--espaco-lg);
+ padding: 0 var(--espaco-md); /* base mobile: laterais reduzidas */
  }
  
  a { text-decoration: none; color: inherit; }
@@ -97,10 +97,19 @@
  0% { transform: translateX(0); }
  100% { transform: translateX(-50%); }
  }
- 
+
+ /* ── CABEÇALHO — base mobile: empilhado ── */
+ .cabecalho {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: 16px;
+ padding: 20px 24px;
+ }
+
  .logo {
  font-family: var(--fonte-titulo);
- font-size: 35px;
+ font-size: 28px;
  font-style: italic;
  color: var(--cor-acento);
  font-weight: 500;
@@ -110,7 +119,7 @@
  font-family: var(--fonte-titulo);
  font-style: italic;
  font-weight: 500;
- font-size: 35px;
+ font-size: 28px;
  }
 
  /* ── PAGE WRAPPER ── */
@@ -119,17 +128,17 @@
  z-index: 1;
  }
  
- /* ── HERO BANNER ── */
+ /* ── HERO BANNER — base mobile ── */
  .contato-banner {
  background-color: var(--cor-escuro);
- padding: 80px 60px;
+ padding: 60px 32px;
  display: flex;
  flex-direction: column;
  gap: 16px;
  position: relative;
  overflow: hidden;
  border-radius: var(--raio);
- margin: var(--espaco-lg) var(--espaco-lg) 0;
+ margin: var(--espaco-md) var(--espaco-md) 0;
  border: 1px solid var(--cor-borda);
  }
  .contato-banner-tag {
@@ -144,7 +153,7 @@
  }
  .contato-banner-titulo {
  font-family: var(--fonte-titulo);
- font-size: 52px;
+ font-size: 38px; /* base mobile */
  max-width: 620px;
  line-height: 1.15;
  font-weight: 700;
@@ -157,11 +166,11 @@
  }
  .banner-deco {
  position: absolute;
- right: 60px;
+ right: 20px; /* base mobile */
  top: 50%;
  transform: translateY(-50%);
  font-family: var(--fonte-titulo);
- font-size: 180px;
+ font-size: 120px; /* base mobile */
  font-weight: 700;
  color: rgba(212,175,55,0.025);
  line-height: 1;
@@ -186,13 +195,13 @@
  border: 1px solid rgba(212,175,55,0.04);
  }
  
- /* ── MAIN SECTION ── */
+ /* ── MAIN SECTION — base mobile ── */
  .contato-section {
- padding: var(--espaco-2xl) var(--espaco-lg);
+ padding: var(--espaco-2xl) var(--espaco-md);
  }
  .contato-grid {
  display: grid;
- grid-template-columns: 1fr 1.6fr;
+ grid-template-columns: 1fr; /* base mobile: colunas empilhadas */
  gap: 40px;
  align-items: start;
  }
@@ -352,12 +361,12 @@
  transform: translateY(-2px);
  }
  
- /* ── FORMULÁRIO ── */
+ /* ── FORMULÁRIO — base mobile ── */
  .form-card {
  background-color: var(--cor-escuro);
  border: 1px solid var(--cor-borda);
  border-radius: var(--raio);
- padding: 40px;
+ padding: 28px 20px;
  position: relative;
  overflow: hidden;
  }
@@ -382,7 +391,7 @@
  }
  .form-row {
  display: grid;
- grid-template-columns: 1fr 1fr;
+ grid-template-columns: 1fr; /* base mobile: um campo por linha */
  gap: 16px;
  }
  .form-grupo {
@@ -444,10 +453,10 @@
  font-size: 15px;
  }
  
- /* Assunto radio group */
+ /* Assunto radio group — base mobile */
  .assunto-grid {
  display: grid;
- grid-template-columns: 1fr 1fr;
+ grid-template-columns: 1fr;
  gap: 10px;
  }
  .assunto-opcao { display: none; }
@@ -567,9 +576,9 @@
  }
  .sucesso-sub { font-size: 14px; color: var(--cor-texto-suave); max-width: 340px; }
  
- /* ── FAQ STRIP ── */
+ /* ── FAQ STRIP — base mobile ── */
  .faq-section {
- padding: 0 var(--espaco-lg) var(--espaco-2xl);
+ padding: 0 var(--espaco-md) var(--espaco-2xl);
  }
  .faq-header {
  display: flex;
@@ -658,18 +667,44 @@
  .delay-2 { animation-delay: 0.2s; }
  .delay-3 { animation-delay: 0.3s; }
  .delay-4 { animation-delay: 0.4s; }
- 
- /* ── RESPONSIVE ── */
- @media (max-width: 900px) {
- .contato-grid { grid-template-columns: 1fr; }
- .contato-banner { margin: var(--espaco-md) var(--espaco-md) 0; padding: 60px 32px; }
- .contato-banner-titulo { font-size: 38px; }
- .banner-deco { font-size: 120px; right: 20px; }
+
+ /* Respeita usuários que preferem menos movimento */
+ @media (prefers-reduced-motion: reduce) {
+ html { scroll-behavior: auto; }
+ .ticker-inner,
+ .badge-online-dot,
+ .form-sucesso,
+ .animar-subir {
+ animation: none;
  }
- @media (max-width: 768px) {
- .cabecalho { padding: 20px 24px; flex-direction: column; gap: 16px; }
- .form-row { grid-template-columns: 1fr; }
- .assunto-grid { grid-template-columns: 1fr; }
- .form-card { padding: 28px 20px; }
- .contato-section, .faq-section { padding-left: var(--espaco-md); padding-right: var(--espaco-md); }
+ }
+ 
+ /* ================================================================
+    RESPONSIVE — MOBILE-FIRST
+    As regras acima já cobrem o layout mobile (equivalente ao antigo
+    "max-width: 768px"). Daqui pra frente, cada @media (min-width: ...)
+    vai devolvendo colunas e espaçamentos maiores conforme a tela cresce.
+    ================================================================ */
+
+ /* ---------- Tablet (≥769px) ---------- */
+ @media (min-width: 769px) {
+ .cabecalho { flex-direction: row; justify-content: space-between; }
+ .form-row { grid-template-columns: 1fr 1fr; }
+ .assunto-grid { grid-template-columns: 1fr 1fr; }
+ .form-card { padding: 40px; }
+ .contato-section { padding: var(--espaco-2xl) var(--espaco-lg); }
+ .faq-section { padding: 0 var(--espaco-lg) var(--espaco-2xl); }
+ .container { padding: 0 var(--espaco-lg); }
+ }
+
+ /* ---------- Desktop (≥901px) ---------- */
+ @media (min-width: 901px) {
+ .contato-grid { grid-template-columns: 1fr 1.6fr; }
+ .contato-banner {
+ margin: var(--espaco-lg) var(--espaco-lg) 0;
+ padding: 80px 60px;
+ }
+ .contato-banner-titulo { font-size: 52px; }
+ .banner-deco { font-size: 180px; right: 60px; }
+ .logo, .logo span { font-size: 35px; }
  }

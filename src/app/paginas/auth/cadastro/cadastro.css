@@ -1,16 +1,22 @@
 /* ================================================================
    LAYOUT PRINCIPAL — TELA DE LOGIN
+   Refatorado com abordagem MOBILE-FIRST:
+   - Estilos "base" (sem media query) = mobile: uma coluna só,
+     painel visual (branding) escondido, formulário ocupando a tela.
+   - @media (min-width: ...) vai "ligando" o painel visual e o
+     layout de duas colunas conforme a tela cresce.
    ================================================================ */
 
 .login-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr; /* base mobile: uma única coluna */
   min-height: 90vh;
 }
 
 /* ================================================================
-       ÁREA DE CARDS
-    ================================================================ */
+   ÁREA DE CARDS (dentro do painel visual — só aparece em telas
+   maiores, ver .login-visual mais abaixo)
+   ================================================================ */
 .cards-section {
   background: var(--cor-escuro-brilhante);
   height: 480px;
@@ -48,8 +54,8 @@
 }
 
 /* ================================================================
-       CARD DE EVENTO
-    ================================================================ */
+   CARD DE EVENTO (dentro do painel visual)
+   ================================================================ */
 .event-card {
   background: var(--bg-card);
   border: 1px solid var(--cor-borda);
@@ -258,11 +264,16 @@
   font-size: 13px;
 }
 
-/* ── PAINEL ESQUERDO (visual / branding) ── */
+/* ================================================================
+   PAINEL ESQUERDO (visual / branding)
+   Base mobile: escondido — a tela de login em telas pequenas mostra
+   só o formulário. Volta a aparecer a partir do breakpoint desktop
+   (ver seção de responsividade no final do arquivo).
+   ================================================================ */
 .login-visual {
+  display: none;
   background-color: var(--cor-escuro);
   border-right: 1px solid var(--cor-borda);
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 48px 56px;
@@ -591,18 +602,22 @@
   z-index: 1;
 }
 
-/* ── PAINEL DIREITO (formulário) ── */
+/* ================================================================
+   PAINEL DIREITO (formulário)
+   Base mobile: ocupa a tela toda, padding reduzido.
+   ================================================================ */
 .login-form-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 56px;
+  padding: 32px 20px;
+  min-height: 100vh;
   background-color: var(--cor-fundo);
 }
 
 .login-form-box {
   width: 100%;
-  max-width: 400px;
+  max-width: 100%; /* base mobile: ocupa toda a largura disponível */
   animation: subirFadeIn 0.5s ease both;
 }
 
@@ -622,7 +637,7 @@
 
 .form-titulo {
   font-family: var(--fonte-titulo);
-  font-size: 32px;
+  font-size: 26px; /* base mobile: título menor */
   font-weight: 700;
   color: var(--cor-texto);
   line-height: 1.2;
@@ -995,42 +1010,6 @@ input[type="checkbox"]:checked~.checkbox-custom::after {
   }
 }
 
-/* ================================================================
-   RESPONSIVIDADE
-   ================================================================ */
-
-@media (max-width: 900px) {
-  .login-page {
-    grid-template-columns: 1fr;
-  }
-
-  .login-visual {
-    display: none;
-  }
-
-  .login-form-panel {
-    padding: 40px 24px;
-    min-height: 100vh;
-  }
-
-  .login-form-box {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .login-form-panel {
-    padding: 32px 20px;
-  }
-
-  .form-titulo {
-    font-size: 26px;
-  }
-}
-
-/* ================================================================
-       ANIMAÇÕES
-    ================================================================ */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -1079,14 +1058,56 @@ input[type="checkbox"]:checked~.checkbox-custom::after {
   }
 }
 
-@keyframes subirFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  .cards-track,
+  .event-card,
+  .event-card::before,
+  .card-btn,
+  .login-form-box,
+  .btn-login::before,
+  .spinner,
+  .alerta,
+  .badge-dot {
+    animation: none;
+  }
+}
+
+/* ================================================================
+   RESPONSIVIDADE — MOBILE-FIRST
+   As regras acima já cobrem o layout mobile (o menor breakpoint,
+   equivalente ao antigo "max-width: 480px"). Daqui pra frente, cada
+   @media (min-width: ...) vai adaptando o formulário e, por fim,
+   revelando o painel visual de duas colunas em telas maiores.
+   ================================================================ */
+
+/* ---------- Mobile grande / phablet (≥481px) ---------- */
+@media (min-width: 481px) {
+  .login-form-panel {
+    padding: 40px 24px;
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  .form-titulo {
+    font-size: 32px;
+  }
+}
+
+/* ---------- Desktop (≥900px): revela o painel visual ---------- */
+@media (min-width: 900px) {
+  .login-page {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .login-visual {
+    display: flex;
+  }
+
+  .login-form-panel {
+    padding: 48px 56px;
+    min-height: auto;
+  }
+
+  .login-form-box {
+    max-width: 400px;
   }
 }

@@ -1,5 +1,9 @@
-/* You can add global styles /* ================================================================
+/* ================================================================
    DESIGN SYSTEM - ELEGÂNCIA CORPORATIVA (PREMIUM & DINÂMICO)
+   Refatorado com abordagem MOBILE-FIRST:
+   - Os estilos "base" (fora de media query) valem para telas pequenas.
+   - @media (min-width: ...) vai progressivamente adaptando o layout
+     para tablet (≥768px) e desktop (≥992px).
    ================================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,500&family=DM+Sans:wght@400;500;600;700&display=swap');
 
@@ -17,7 +21,7 @@
   --cor-acento-claro: rgba(212, 175, 55, 0.1); /* Fundo dourado translúcido para badges */
   --cor-acento-hover: #F3E5AB;    /* Dourado suave/creme para hover */
   --cor-sucesso: #10B981;
-  --cor-erro: #EFnpx ng serve4444;
+  --cor-erro: #EF4444;
   --cor-aviso: #F59E0B;
 
   /* Fontes do Sistema */
@@ -62,7 +66,7 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 var(--espaco-lg);
+  padding: 0 var(--espaco-md);
 }
 
 ul {
@@ -79,12 +83,16 @@ button {
   font-family: var(--fonte-corpo);
 }
 
-/* HEADER COMPARTILHADO */
+/* ================================================================
+   HEADER COMPARTILHADO (base = mobile: empilhado)
+   ================================================================ */
 .cabecalho {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 20px 60px;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 24px;
   background-color: var(--cor-escuro);
   border-bottom: 1px solid var(--cor-borda);
   position: sticky;
@@ -94,7 +102,7 @@ button {
 
 .logo {
   font-family: var(--fonte-titulo);
-  font-size: 35px;
+  font-size: 28px;
   font-style: italic;
   color: var(--cor-acento);
   font-weight: 500;
@@ -105,18 +113,23 @@ button {
   font-family: var(--fonte-titulo);
   font-style: italic;
   font-weight: 500;
-  font-size: 35px;
+  font-size: 28px;
 }
 
 .navbar {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 32px;
+  gap: 16px;
+  width: 100%;
 }
 
 .nav-lista {
   display: flex;
-  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
 }
 
 .nav-link {
@@ -126,17 +139,16 @@ button {
   transition: color var(--transicao);
 }
 
-.nav-link:hover{
+.nav-link:hover {
   color: var(--cor-acento);
-
 }
 
 .nav-link.ativo {
   color: var(--cor-texto-suave);
 }
 
-.nav-link.ativo:hover{
-  color: var(--cor-acento)
+.nav-link.ativo:hover {
+  color: var(--cor-acento);
 }
 
 .btn-painel {
@@ -155,11 +167,13 @@ button {
   color: var(--cor-fundo);
 }
 
-/* HERO BANNER DA SEÇÃO */
+/* ================================================================
+   HERO BANNER DA SEÇÃO (base = mobile)
+   ================================================================ */
 .eventos-banner {
   background-color: var(--cor-escuro);
   color: var(--cor-texto);
-  padding: 80px 60px;
+  padding: 40px 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -183,7 +197,7 @@ button {
 
 .eventos-banner-titulo {
   font-family: var(--fonte-titulo);
-  font-size: 48px;
+  font-size: 32px;
   max-width: 600px;
   line-height: 1.15;
   font-weight: 700;
@@ -198,11 +212,11 @@ button {
 
 .banner-numero-fundo {
   position: absolute;
-  right: 60px;
+  right: 20px;
   top: 50%;
   transform: translateY(-50%);
   font-family: var(--fonte-titulo);
-  font-size: 180px;
+  font-size: 120px;
   font-weight: 700;
   color: rgba(212, 175, 55, 0.025);
   line-height: 1;
@@ -210,11 +224,14 @@ button {
   user-select: none;
 }
 
-/* CONTROLES E FILTROS RÁPIDOS */
+/* ================================================================
+   CONTROLES E FILTROS RÁPIDOS (base = mobile: sticky em 2 linhas)
+   ================================================================ */
 .eventos-controles {
   gap: 20px;
   background-color: var(--cor-fundo);
-  position: relative;
+  position: sticky;
+  top: 140px; /* comportamento sticky ajustado para caber o menu de duas linhas do header mobile */
   z-index: 90;
 }
 
@@ -280,11 +297,13 @@ button {
   color: var(--cor-fundo);
 }
 
-/* DASHBOARD DE MÉTRICAS */
+/* ================================================================
+   DASHBOARD DE MÉTRICAS
+   ================================================================ */
 .dashboard {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--espaco-lg);
+  grid-template-columns: 1fr; /* base: uma coluna no mobile */
+  gap: var(--espaco-md);
   margin-bottom: var(--espaco-xl);
   margin-top: var(--espaco-xl);
 }
@@ -293,7 +312,7 @@ button {
   background-color: var(--cor-escuro);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
-  padding: var(--espaco-xl) var(--espaco-lg);
+  padding: var(--espaco-lg);
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -307,7 +326,7 @@ button {
 }
 
 .dash-card-icon {
-  font-size: 40px;
+  font-size: 32px;
   color: rgba(212, 175, 55, 0.08);
   position: absolute;
   right: 20px;
@@ -331,7 +350,7 @@ button {
 
 .dash-number {
   font-family: var(--fonte-titulo);
-  font-size: 52px;
+  font-size: 40px;
   color: var(--cor-acento);
   line-height: 1;
   font-weight: 700;
@@ -345,7 +364,9 @@ button {
   margin: var(--espaco-xl) 0;
 }
 
-/* LISTAGEM DE EVENTOS */
+/* ================================================================
+   LISTAGEM DE EVENTOS
+   ================================================================ */
 .eventos-section {
   margin-top: var(--espaco-xl);
   margin-bottom: var(--espaco-2xl);
@@ -353,7 +374,7 @@ button {
 
 .section-title {
   font-family: var(--fonte-titulo);
-  font-size: 28px;
+  font-size: 24px;
   color: var(--cor-texto);
   margin-bottom: var(--espaco-lg);
 }
@@ -364,15 +385,15 @@ button {
   gap: var(--espaco-md);
 }
 
+/* Card do evento — base = mobile: coluna empilhada */
 .evento-card {
   background-color: var(--cor-escuro);
   border: 1px solid var(--cor-borda);
   border-radius: var(--raio);
   padding: var(--espaco-lg);
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--espaco-lg);
   transition: all var(--transicao);
 }
@@ -383,15 +404,15 @@ button {
   box-shadow: var(--sombra-md), var(--sombra-glow-ouro);
 }
 
-/* Bloco de miniatura */
+/* Bloco de miniatura — menor no mobile */
 .evento-thumbnail {
-  width: 100px;
-  height: 100px;
+  width: 60px;
+  height: 60px;
   border-radius: var(--raio-sm);
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
-  align-items: flex;
+  align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0A192F 0%, #112240 100%);
   border: 1px solid var(--cor-borda);
@@ -405,7 +426,7 @@ button {
 
 .evento-thumbnail-placeholder {
   font-family: var(--fonte-titulo);
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
   color: var(--cor-acento);
   letter-spacing: 1px;
@@ -432,8 +453,8 @@ button {
 
 .evento-detalhes {
   display: flex;
-  gap: var(--espaco-lg);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 6px;
 }
 
 .evento-detalhes p {
@@ -479,19 +500,20 @@ button {
   border: 1px solid var(--cor-borda);
 }
 
-/* Bloco de Status e Ação */
+/* Bloco de Status e Ação — base = mobile: ocupa toda a largura, com divisor no topo */
 .evento-status-acao {
   display: flex;
   align-items: center;
   gap: var(--espaco-lg);
-  min-width: 320px;
-  justify-content: flex-end;
+  width: 100%;
+  justify-content: space-between;
+  border-top: 1px solid var(--cor-borda);
+  padding-top: var(--espaco-md);
+  margin-top: var(--espaco-sm);
 }
 
 .evento-ingressos {
-  text-align: right;
-  border-left: 1px solid var(--cor-borda);
-  padding-left: var(--espaco-lg);
+  text-align: left;
   min-width: 130px;
 }
 
@@ -548,8 +570,8 @@ button {
   box-shadow: none;
 }
 
-.btn-sair{
-  border-radius: (var(--raio-pill));
+.btn-sair {
+  border-radius: var(--raio-pill);
   color: var(--cor-texto);
 }
 
@@ -572,7 +594,9 @@ button {
   color: var(--cor-cinza);
 }
 
-/* RODAPÉ COMPARTILHADO */
+/* ================================================================
+   RODAPÉ COMPARTILHADO
+   ================================================================ */
 .rodape {
   background-color: #030712;
   color: var(--cor-cinza);
@@ -595,7 +619,7 @@ button {
 .rodape-logo span {
   color: var(--cor-acento);
   font-style: italic;
-  font-weight: 400; 
+  font-weight: 400;
   font-size: 30px;
 }
 
@@ -641,14 +665,83 @@ button {
 .delay-5 { animation-delay: 0.5s; }
 .delay-6 { animation-delay: 0.6s; }
 
-/* ================================================================
-   RESPONSIVIDADE
-   ================================================================ */
-@media (max-width: 992px) {
-  .evento-card {
-    flex-wrap: wrap;
+/* Respeita usuários que preferem menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
-  
+  .animar-fade,
+  .animar-subir {
+    animation: none;
+  }
+}
+
+/* ================================================================
+   RESPONSIVIDADE — MOBILE-FIRST
+   As regras acima já cobrem o layout mobile (o menor breakpoint).
+   Daqui pra frente, cada @media (min-width: ...) "liga" mais
+   espaço/colunas conforme a tela cresce.
+   ================================================================ */
+
+/* ---------- Tablet (≥768px) ---------- */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--espaco-lg);
+  }
+
+  .cabecalho {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px 60px;
+  }
+
+  .navbar {
+    flex-direction: row;
+    width: auto;
+    gap: 32px;
+  }
+
+  .nav-lista {
+    width: auto;
+  }
+
+  .eventos-banner {
+    padding: 60px 40px;
+  }
+
+  .eventos-banner-titulo {
+    font-size: 40px;
+  }
+
+  .eventos-controles {
+    top: 0; /* header cabe em uma linha a partir daqui, sticky recua para o topo */
+  }
+
+  .dashboard {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .evento-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .evento-thumbnail {
+    width: 100px;
+    height: 100px;
+  }
+
+  .evento-thumbnail-placeholder {
+    font-size: 22px;
+  }
+
+  .evento-detalhes {
+    flex-direction: row;
+    gap: var(--espaco-lg);
+  }
+
   .evento-status-acao {
     width: 100%;
     justify-content: space-between;
@@ -656,7 +749,7 @@ button {
     padding-top: var(--espaco-md);
     margin-top: var(--espaco-sm);
   }
-  
+
   .evento-ingressos {
     border-left: none;
     padding-left: 0;
@@ -664,59 +757,54 @@ button {
   }
 }
 
-@media (max-width: 768px) {
-  .cabecalho {
-    padding: 20px 24px;
-    flex-direction: column;
-    gap: 16px;
+/* ---------- Desktop (≥992px) ---------- */
+@media (min-width: 992px) {
+  .logo,
+  .logo span {
+    font-size: 35px;
   }
-  
-  .navbar {
-    flex-direction: column;
-    gap: 16px;
-    width: 100%;
-  }
-  
-  .nav-lista {
-    justify-content: center;
-    width: 100%;
-  }
-  
+
   .eventos-banner {
-    padding: 40px 24px;
+    padding: 80px 60px;
   }
-  
+
   .eventos-banner-titulo {
-    font-size: 32px;
+    font-size: 48px;
   }
-  
+
   .banner-numero-fundo {
-    right: 20px;
-    font-size: 120px;
+    right: 60px;
+    font-size: 180px;
   }
-  
-  .eventos-controles {
-    top: 140px; /* Altera o comportamento sticky para caber o menu de duas linhas */
+
+  .dash-card-icon {
+    font-size: 40px;
   }
-  
+
+  .dash-number {
+    font-size: 52px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
   .evento-card {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: nowrap;
   }
-  
-  .evento-thumbnail {
-    width: 60px;
-    height: 60px;
+
+  .evento-status-acao {
+    width: auto;
+    min-width: 320px;
+    justify-content: flex-end;
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
   }
-  
-  .evento-thumbnail-placeholder {
-    font-size: 18px;
-  }
-  
-  .evento-detalhes {
-    flex-direction: column;
-    gap: 6px;
+
+  .evento-ingressos {
+    border-left: 1px solid var(--cor-borda);
+    padding-left: var(--espaco-lg);
+    text-align: right;
   }
 }
-
-
